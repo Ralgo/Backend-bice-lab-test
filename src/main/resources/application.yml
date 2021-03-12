@@ -1,0 +1,7 @@
+# External api rest resources
+indecon:
+  site:
+    url:
+      all: http://indecon.site/last
+      value: http://indecon.site/value
+      date: http://indecon.site/date
