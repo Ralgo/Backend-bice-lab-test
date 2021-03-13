@@ -1,0 +1,12 @@
+# External api rest resources
+indecon:
+  site:
+    url: http://indecon.site
+
+logging:
+  level:
+    ROOT: INFO
+    org:
+      springframework:
+        web: DEBUG
+    cl.bice.lab.indecon: DEBUG
