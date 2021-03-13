@@ -6,6 +6,7 @@ import cl.bice.lab.indecon.service.IndeconService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 /**
  * @author Cristian Beroiza <cberoiza AT gmail DOT com> 11-03-21
@@ -24,6 +25,7 @@ public class IndeconServiceImpl implements IndeconService {
     @Override
     public IndeconLastValuesResponseDto getLastValues() {
         log.debug("Invoking WebClient Indecon Last Values Service");
-        return indeconRestClient.lastService();
+        Mono<IndeconLastValuesResponseDto> indeconLastValuesResponseDtoMono = indeconRestClient.lastService();
+        return indeconLastValuesResponseDtoMono.block();
     }
 }

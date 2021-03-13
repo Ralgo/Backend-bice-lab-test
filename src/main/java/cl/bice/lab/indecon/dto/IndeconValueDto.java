@@ -3,6 +3,8 @@
  */
 package cl.bice.lab.indecon.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,8 @@ import lombok.NoArgsConstructor;
  * @author Cristian Beroiza <cberoiza AT gmail DOT com> 11-03-21
  */
 @Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class IndeconValueDto {
 

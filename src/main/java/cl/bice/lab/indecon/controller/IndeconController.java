@@ -23,7 +23,7 @@ public class IndeconController {
     }
 
     @GetMapping("/")
-    @ApiOperation("Service that return all the last values from the indecon site api")
+    @ApiOperation("Service that return all the latest values from the indecon site api")
     public IndeconLastValuesResponseDto getLastValues() {
         return indeconService.getLastValues();
     }

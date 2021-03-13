@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 
 /**
@@ -21,8 +22,9 @@ public class IndeconRestClientImpl implements IndeconRestClient {
     private String indeconSiteUrl;
 
     @Override
-    public IndeconLastValuesResponseDto lastService() {
+    public Mono<IndeconLastValuesResponseDto> lastService() {
         log.debug("Lets call the external Indecon rest endpoint using webclient!!!");
+
         WebClient webClient = WebClient.builder()
                 .baseUrl(indeconSiteUrl)
                 .clientConnector(new ReactorClientHttpConnector(
@@ -34,7 +36,6 @@ public class IndeconRestClientImpl implements IndeconRestClient {
                 .uri("/last")
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
-                .bodyToMono(IndeconLastValuesResponseDto.class)
-                .block();
+                .bodyToMono(IndeconLastValuesResponseDto.class);
     }
 }
