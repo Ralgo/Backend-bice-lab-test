@@ -1,6 +1,6 @@
 package cl.bice.lab.indecon.client.rest;
 
-import cl.bice.lab.indecon.dto.IndeconLastValuesResponseDto;
+import cl.bice.lab.indecon.dto.IndeconLastValuesDto;
 import reactor.core.publisher.Mono;
 
 /**
@@ -8,6 +8,6 @@ import reactor.core.publisher.Mono;
  */
 public interface IndeconRestClient {
 
-    Mono<IndeconLastValuesResponseDto> lastService();
+    Mono<IndeconLastValuesDto> lastService();
 
 }

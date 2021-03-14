@@ -9,6 +9,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -30,7 +33,9 @@ class IndeconControllerTest {
     }
 
     @BeforeEach
-    void init(){
+    void init() {
+        List<IndeconValueDto> indeconValueDtoList = new ArrayList<>();
+
         IndeconValueDto cobre = IndeconValueDto.builder()
                 .key("Cobre")
                 .date("123456789")
@@ -47,9 +52,11 @@ class IndeconControllerTest {
                 .value(12.2)
                 .build();
 
+        indeconValueDtoList.add(oro);
+        indeconValueDtoList.add(cobre);
+
         indeconLastValuesResponseDtoMock = IndeconLastValuesResponseDto.builder()
-                .cobre(cobre)
-                .oro(oro)
+                .indeconValueDtoList(indeconValueDtoList)
                 .build();
     }
 

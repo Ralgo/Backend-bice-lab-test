@@ -1,6 +1,6 @@
 package cl.bice.lab.indecon.client.rest.impl;
 
-import cl.bice.lab.indecon.dto.IndeconLastValuesResponseDto;
+import cl.bice.lab.indecon.dto.IndeconLastValuesDto;
 import cl.bice.lab.indecon.dto.IndeconValueDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,7 +24,7 @@ class IndeconRestClientImplTest {
     public static MockWebServer mockWebServer;
 
     private final IndeconRestClientImpl indeconRestClient;
-    private IndeconLastValuesResponseDto indeconLastValuesResponseDtoMock;
+    private IndeconLastValuesDto indeconLastValuesDtoMock;
 
     IndeconRestClientImplTest() {
         this.indeconRestClient = new IndeconRestClientImpl();
@@ -62,7 +62,7 @@ class IndeconRestClientImplTest {
                 .value(12.2)
                 .build();
 
-        indeconLastValuesResponseDtoMock = IndeconLastValuesResponseDto.builder()
+        indeconLastValuesDtoMock = IndeconLastValuesDto.builder()
                 .cobre(cobre)
                 .oro(oro)
                 .build();
@@ -73,10 +73,10 @@ class IndeconRestClientImplTest {
         ObjectMapper objectMapper = new ObjectMapper();
 
         mockWebServer.enqueue(new MockResponse()
-                .setBody(objectMapper.writeValueAsString(indeconLastValuesResponseDtoMock))
+                .setBody(objectMapper.writeValueAsString(indeconLastValuesDtoMock))
                 .addHeader("Content-Type", "application/json"));
 
-        Mono<IndeconLastValuesResponseDto> responseDtoMono = indeconRestClient.lastService();
+        Mono<IndeconLastValuesDto> responseDtoMono = indeconRestClient.lastService();
 
         StepVerifier.create(responseDtoMono)
                 .expectNextMatches(indeconLastValuesResponseDto ->

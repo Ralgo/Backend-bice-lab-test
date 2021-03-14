@@ -4,6 +4,7 @@ import cl.bice.lab.indecon.dto.IndeconLastValuesResponseDto;
 import cl.bice.lab.indecon.service.IndeconService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author Cristian Beroiza <cberoiza AT gmail DOT com> 11-03-21
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/indecon")
 public class IndeconController {
