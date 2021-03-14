@@ -1,13 +1,13 @@
 package cl.bice.lab.indecon.service.impl;
 
 import cl.bice.lab.indecon.client.rest.IndeconRestClient;
+import cl.bice.lab.indecon.dto.IndeconLastValuesDto;
 import cl.bice.lab.indecon.dto.IndeconLastValuesResponseDto;
 import cl.bice.lab.indecon.dto.IndeconValueDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -20,7 +20,7 @@ class IndeconServiceImplTest {
     private final IndeconRestClient indeconRestClient;
     private final IndeconServiceImpl indeconService;
 
-    private IndeconLastValuesResponseDto indeconLastValuesResponseDtoMock;
+    private IndeconLastValuesDto indeconLastValuesDtoMock;
 
     IndeconServiceImplTest() {
         indeconRestClient = mock(IndeconRestClient.class);
@@ -45,7 +45,7 @@ class IndeconServiceImplTest {
                 .value(12.2)
                 .build();
 
-        indeconLastValuesResponseDtoMock = IndeconLastValuesResponseDto.builder()
+        indeconLastValuesDtoMock = IndeconLastValuesDto.builder()
                 .cobre(cobre)
                 .oro(oro)
                 .build();
@@ -53,11 +53,10 @@ class IndeconServiceImplTest {
 
     @Test
     void whenGetLastValues_shouldReturnValidValues() {
-        when(indeconRestClient.lastService()).thenReturn(Mono.just(indeconLastValuesResponseDtoMock));
+        when(indeconRestClient.lastService()).thenReturn(Mono.just(indeconLastValuesDtoMock));
 
         IndeconLastValuesResponseDto indeconLastValuesResponseDto = indeconService.getLastValues();
 
         assertNotNull(indeconLastValuesResponseDto);
-        assertEquals(2.2, indeconLastValuesResponseDto.getCobre().getValue());
     }
 }

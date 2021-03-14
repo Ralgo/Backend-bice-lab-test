@@ -1,7 +1,7 @@
 package cl.bice.lab.indecon.client.rest.impl;
 
 import cl.bice.lab.indecon.client.rest.IndeconRestClient;
-import cl.bice.lab.indecon.dto.IndeconLastValuesResponseDto;
+import cl.bice.lab.indecon.dto.IndeconLastValuesDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ public class IndeconRestClientImpl implements IndeconRestClient {
     private String indeconSiteUrl;
 
     @Override
-    public Mono<IndeconLastValuesResponseDto> lastService() {
+    public Mono<IndeconLastValuesDto> lastService() {
         log.debug("Lets call the external Indecon rest endpoint using webclient!!!");
 
         WebClient webClient = WebClient.builder()
@@ -36,6 +36,6 @@ public class IndeconRestClientImpl implements IndeconRestClient {
                 .uri("/last")
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
-                .bodyToMono(IndeconLastValuesResponseDto.class);
+                .bodyToMono(IndeconLastValuesDto.class);
     }
 }
